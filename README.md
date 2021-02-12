@@ -2,7 +2,8 @@
 A simple blog made with django and bootstrap 5.0
 ### Installation
 
-This project has been made in python 3.6.0
+This project has been made in python 3.6.0.
+
 To install, first clone the repository and then install the dependecies
 ```sh
 $ pip install -r requirements/local.txt
