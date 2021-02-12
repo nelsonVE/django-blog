@@ -1,4 +1,5 @@
 from django import forms
+from .models import Post
 
 class LoginForm(forms.Form):
     username = forms.CharField(
@@ -20,7 +21,12 @@ class LoginForm(forms.Form):
         max_length=45
     )
 
-class PostForm(forms.Form):
+class PostForm(forms.ModelForm):
+
+    class Meta():
+        model = Post
+        fields = ['title', 'content']
+
     title = forms.CharField(
         widget=forms.TextInput(
             attrs={

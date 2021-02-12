@@ -17,7 +17,7 @@ Create post
                     </div>
                 {% endfor %}
             {% endif %}
-            <form action="{% url 'blog:postCreate'  %}" method="post">
+            <form method="post">
                 {% csrf_token %}
                 {{ form }}
                 <input type="submit" class="btn btn-success mt-3" value="Create post">

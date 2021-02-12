@@ -1,0 +1,41 @@
+{% extends "blog/layout/base.html" %}
+
+{% block title %}
+Blog - {{ actual_post.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        
+        <div class="row">
+            <div class="container border mt-4 col-lg-7 rounded p-4">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert {{ message.tags }}" role="alert">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <h1>{{ actual_post.title }}</h1>
+                <small class="fw-light fs-6 float-start">Created at: {{actual_post.created_at}} - Written by: {{ actual_post.user.username }}</small>
+                {% if user.is_staff %}
+                    <div class="float-end">
+                        <a href="{% url 'blog:postUpdate' actual_post.id %}">Modify</a> | <a href="{% url 'blog:postDelete' actual_post.id %}">Delete</a>
+                    </div>
+                {% endif %}<br>
+                <hr>
+                <p class="text-break">{{ actual_post.content }}</p>
+            </div>
+            <div class="container mt-4 col-lg-3">
+                <h3>Last entries</h3>
+                {% for post in posts %}
+                    <div class="list-group">
+                        <a href="{% url 'blog:postView' post.id %}" class="list-group-item list-group-item-action {% if post.id == actual_post.id %}active{% endif %}" aria-current="true">
+                            {{ post.title }}
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
