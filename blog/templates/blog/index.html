@@ -1,0 +1,32 @@
+{% extends "blog/layout/base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-2">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }} mt-2" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-lg-3 col-md-6 col-sm-4 col-xs-12 mt-3">
+                <div class="card ml-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ post.title }}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Written by: {{ post.user.username }} at {{ post.created_at }}</li>
+                        <li class="list-group-item"><a href="{% url 'blog:postView' post.id %}" class="card-link">Read more »</a></li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

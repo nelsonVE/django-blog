@@ -1,0 +1,27 @@
+{% extends "blog/layout/base.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+
+<div class="row p-5 text-center">
+    <div class="offset-lg-4 offset-md-4 col-lg-4 col-md-4 col-sm-12 col-xs-12 border p-5">
+        <h5>Login</h5>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <form action="login" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" class="btn btn-success mt-3" value="Sign in">
+        </form>
+    </div>
+</div>
+
+{% endblock %}

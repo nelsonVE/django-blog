@@ -1,0 +1,28 @@
+{% extends "blog/layout/base.html" %}
+
+{% block title %}
+Create post
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row p-5 text-center">
+        <div class="offset-lg-2 offset-md-2 col-lg-8 col-md-8 col-sm-8 col-xs-12 border p-5">
+            <h5>New post</h5>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" class="btn btn-success mt-3" value="Create post">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
